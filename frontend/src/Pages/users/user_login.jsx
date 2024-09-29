@@ -11,15 +11,14 @@ export default function UserLogin() {
   let navigate = useNavigate();
   const [user_id, setUserID] = useState('');
   const [password, setPassword] = useState('');
-  const [loading, setLoading] = useState(false);
 
   const handleLogin = async (e) => {
     try {
-      const response = await axios.post('https://putms.onrender.com/verify_user', { user_id, password });
+      const response = await axios.post('http://localhost:3001/verify_user', { user_id, password });
       if (response.data.success) {
         toast.success(response.data.message)
         sessionStorage.setItem("user_id", user_id);
-        navigate('/home')
+        navigate('/user-home')
       }
       else {
         toast.error(response.data.message)
@@ -27,14 +26,10 @@ export default function UserLogin() {
     } catch (error) {
       toast.error(error)
     }
-    finally {
-      setLoading(false);
-    }
   };
 
   return (
     <>
-      {loading && <Spinner />}
       <div className='flex justify-around h-screen w-full md:flex-col sm:flex-col'>
 
         <div className='w-1/2 md:w-full sm:w-full h-screen overflow-hidden loginimg md:max-h-min sm:max-h-min'>
