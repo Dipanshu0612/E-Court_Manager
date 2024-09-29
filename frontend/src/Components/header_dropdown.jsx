@@ -6,9 +6,9 @@ export default function HeaderDropdown() {
   return (
     <div className='flex flex-col w-[10.55rem] absolute top-[4.3rem] right-0 bg-black justify-center items-center md:top-[25.4rem] sm:top-[25.4rem] md:bg-[#111827]'>
         <ul className='flex flex-col text-white justify-center text-xl p-3 space-y-2 font-bold'>
-          <li className='hover:text-blue-800 text-[1rem]'><button onClick={()=>{
+          {/* <li className='hover:text-blue-800 text-[1rem]'><button onClick={()=>{
                 navigate("/change-password")
-            }} disabled>Change Password</button></li>
+            }} disabled>Change Password</button></li> */}
             <li className='hover:text-blue-800 text-[1rem]'><button onClick={()=>{
               sessionStorage.removeItem("user_id");
                 navigate("/")

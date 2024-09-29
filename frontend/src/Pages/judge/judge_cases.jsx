@@ -1,13 +1,13 @@
 import React from 'react'
 import Card from 'react-bootstrap/Card';
-import LawyerHeader from '../Components/lawyer_header';
-import Footer from '../Components/footer';
+import Footer from '../../Components/footer';
 import Button from 'react-bootstrap/Button';
+import JudgeHeader from '../../Components/judge_header';
 
-export default function LaywerCases() {
+export default function JudgeCases() {
     return (
         <>
-            <LawyerHeader />
+            <JudgeHeader />
             <div className='bg-slate-200'>
                 <div className='p-4'>
                     <h1 className='p-2'>Your Cases</h1>
@@ -21,7 +21,8 @@ export default function LaywerCases() {
                                         Case Description
                                     </Card.Text>
                                     <Button variant="primary" className='mr-2'>Manage Case</Button>
-                                    <Button variant="danger">Drop Case</Button>
+                                    <Button variant="primary" className='mr-2'>Schedule a Hearing</Button>
+                                    <Button variant="danger">Dismiss Case</Button>
                                 </Card.Body>
                             </Card>
                         ))}

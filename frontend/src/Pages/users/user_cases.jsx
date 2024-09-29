@@ -2,8 +2,8 @@ import React, { useState } from 'react'
 import Card from 'react-bootstrap/Card';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
-import UserHeader from '../Components/user_header';
-import Footer from '../Components/footer';
+import UserHeader from '../../Components/user_header';
+import Footer from '../../Components/footer';
 import { Link } from 'react-router-dom';
 
 
@@ -12,7 +12,7 @@ export default function UserCases() {
     return (
         <>
             <UserHeader />
-            <div className='p-3 flex flex-col'>
+            <div className='p-3 flex flex-col bg-slate-200'>
                 <h1>Your Cases</h1>
                 <div>
                     <Row xs={1} md={2} className="g-4">
@@ -28,8 +28,8 @@ export default function UserCases() {
                                             longer.
                                         </Card.Text>
                                         <button className='p-2 mr-2 bg-green-400 w-max rounded-lg' disabled>View Case</button>
-                                        <button className='p-2 bg-red-500 w-max rounded-lg' onClick={()=>{
-                                            setLength(length-1);
+                                        <button className='p-2 bg-red-500 w-max rounded-lg' onClick={() => {
+                                            setLength(length - 1);
                                         }}>Delete Case</button>
                                     </Card.Body>
                                 </Card>

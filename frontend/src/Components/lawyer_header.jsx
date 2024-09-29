@@ -24,7 +24,7 @@ export default function LawyerHeader() {
             <li className="text-white cursor-pointer py-[1.37rem] font-semibold hover:text-blue-800"><Link to="/lawyer-home" activeClassName='active'>Home</Link></li>
             <li className="text-white cursor-pointer py-[1.37rem] font-semibold hover:text-blue-800" ><Link to="/lawyer-cases" activeClassName='active'>My Cases</Link></li>
             <li className="text-white cursor-pointer py-[1.37rem] font-semibold hover:text-blue-800" ><Link to="/available-cases" activeClassName='active'>Available Cases</Link></li>
-            <li className="text-white cursor-pointer py-[1.37rem] font-semibold hover:text-blue-800" ><Link to="/upcoming-hearing" activeClassName='active'>Upcoming Hearings</Link></li>
+            <li className="text-white cursor-pointer py-[1.37rem] font-semibold hover:text-blue-800" ><Link to="/lawyer-upcoming-hearing" activeClassName='active'>Upcoming Hearings</Link></li>
           <li className="text-white cursor-pointer py-[1.37rem] font-semibold hover:text-blue-800" onClick={()=>{
             setShowDrop((prev) => !prev)
           }}><CgProfile className='text-2xl'/></li>

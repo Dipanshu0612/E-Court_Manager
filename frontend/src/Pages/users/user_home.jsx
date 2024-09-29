@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react'
-import Footer from '../Components/footer'
+import Footer from '../../Components/footer'
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import UserHeader from '../Components/user_header';
-import UserCarousel from '../Components/user_caraousel';
+import UserHeader from '../../Components/user_header';
+import UserCarousel from '../../Components/user_caraousel';
 import { GoBellFill } from "react-icons/go";
 
 
