@@ -8,6 +8,9 @@ const mongoose = require('mongoose');
 const url1 = process.env.MONGO_URL1;
 const url2 = process.env.MONGO_URL2;
 const userRoutes = require('./routes/userRoutes');
+const lawyerRoutes = require('./routes/lawyerRoutes');
+const judgeRoutes = require('./routes/judgeRoutes');
+const adminRoutes = require('./routes/adminRoutes');
 
 mongoose.connect(url1)
 .then(console.log("Connected to Database!"))
@@ -18,6 +21,9 @@ app.use(cors());
 app.use(bodyParser.json());
 
 app.use("/", userRoutes);
+app.use("/", lawyerRoutes);
+app.use("/", judgeRoutes);
+app.use("/",adminRoutes);
 
 app.listen(PORT, () => {    
   console.log(`Listening on PORT:${PORT}`);

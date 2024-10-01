@@ -1,16 +1,17 @@
 import React, { useState } from 'react'
 import UserHeader from '../../Components/user_header'
 import Footer from '../../Components/footer'
+import axios from 'axios'
+import {toast} from "react-toastify"
 
 export default function UserFileCase() {
+    const user_id = sessionStorage.getItem("user_id");
     const [caseData, setCaseData] = useState({
         title: '',
         description: '',
         fileType: '',
         documents: null,
     });
-    const [message, setMessage] = useState('');
-    const [loading, setLoading] = useState(false);
 
     const handleChange = (e) => {
         const { name, value, files } = e.target;
@@ -23,8 +24,6 @@ export default function UserFileCase() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        setLoading(true);
-        setMessage('');
 
         const formData = new FormData();
         formData.append('title', caseData.title);
@@ -33,7 +32,29 @@ export default function UserFileCase() {
         if (caseData.documents) {
             formData.append('documents', caseData.documents);
         }
+
+        try{
+            console.log(caseData)
+            const response = await axios.post('http://localhost:3001/add_case', {caseData, user_id});
+            if(response.data.success){
+                toast.success(response.data.message)
+                setCaseData({
+                    title: '',
+                    description: '',
+                    fileType: '',
+                    documents: null,
+                });
+        }
+        else{
+            toast.error(response.data.message)
+        }
+    }
+        catch{
+            toast.error(response.data.message)
+        }
     };
+
+
     return (
         <>
             <UserHeader />
@@ -94,13 +115,11 @@ export default function UserFileCase() {
                         </div>
                         <button
                             type="submit"
-                            disabled={loading}
-                            className={`mt-4 w-full py-2 rounded-md text-white font-semibold ${loading ? 'bg-gray-400' : 'bg-blue-600 hover:bg-blue-700'} transition duration-200`}
+                            className={`mt-4 w-full py-2 rounded-md text-white font-semibold bg-blue-600 hover:bg-blue-700 transition duration-200`} onClick={handleSubmit}
                         >
-                            {loading ? 'Filing...' : 'File Case'}
+                            File Case
                         </button>
                     </form>
-                    {message && <p className="mt-4 text-red-500">{message}</p>}
                 </div>
                 <div className='w-1/2 mt-3'>
                     <img src="https://imagecdn.99acres.com//microsite/wp-content/blogs.dir/6161/files/2024/01/judge-signing-on-the-papers-stockpack-pexels-270x180.jpg?1716533012" alt="" className='h-[31.4rem]' />

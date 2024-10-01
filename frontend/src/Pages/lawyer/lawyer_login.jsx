@@ -9,17 +9,17 @@ import "../../index.css"
 
 export default function LawyerLogin() {
   let navigate = useNavigate();
-  const [user_id, setUserID] = useState('');
+  const [lawyer_id, setLawyerID] = useState('');
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
 
   const handleLogin = async (e) => {
     try {
-      const response = await axios.post('https://putms.onrender.com/verify_user', { user_id, password });
+      const response = await axios.post('http://localhost:3001/verify_lawyer', { lawyer_id, password });
       if (response.data.success) {
         toast.success(response.data.message)
-        sessionStorage.setItem("user_id", user_id);
-        navigate('/home')
+        sessionStorage.setItem("lawyer_id", lawyer_id);
+        navigate('/lawyer-home')
       }
       else {
         toast.error(response.data.message)
@@ -49,7 +49,7 @@ export default function LawyerLogin() {
           </div>
 
           <div className='flex flex-col w-[20rem] space-y-3 bg-slate-200 rounded-3xl items-center justify-center md:space-y-3 sm:space-y-2 p-2 shadow-md'>
-            <input type="email" placeholder='Lawyer Id' className='bg-slate-100 rounded-lg w-[80%] p-2 mt-4' value={user_id} onChange={(e) => setUserID(e.target.value)} required />
+            <input type="email" placeholder='Lawyer Id' className='bg-slate-100 rounded-lg w-[80%] p-2 mt-4' value={lawyer_id} onChange={(e) => setLawyerID(e.target.value)} required />
             <input type="password" placeholder='Password' className='bg-slate-100 rounded-lg w-[80%] p-2' value={password} onChange={(e) => setPassword(e.target.value)} required />
             <button className='bg-green-500 py-2 px-3 rounded-lg hover:bg-green-600 ease-in-out transition' onClick={() => {
               handleLogin()

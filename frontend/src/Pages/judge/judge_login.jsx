@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { NavLink as Link, useNavigate } from 'react-router-dom'
 import axios from 'axios'
+import { toast } from "react-toastify"
 import Login from "../../Assests/Login.jpg"
 import LOGIN2 from "../../Assests/LOGIN2.jpg"
 import "../../index.css"
@@ -8,17 +9,17 @@ import "../../index.css"
 
 export default function JudgeLogin() {
   let navigate = useNavigate();
-  const [user_id, setUserID] = useState('');
+  const [judge_id, setJudgeID] = useState('');
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
 
   const handleLogin = async (e) => {
     try {
-      const response = await axios.post('https://putms.onrender.com/verify_user', { user_id, password });
+      const response = await axios.post('http://localhost:3001/verify_judge', { judge_id, password });
       if (response.data.success) {
         toast.success(response.data.message)
-        sessionStorage.setItem("user_id", user_id);
-        navigate('/home')
+        sessionStorage.setItem("judge_id", judge_id);
+        navigate('/judge-home')
       }
       else {
         toast.error(response.data.message)
@@ -48,7 +49,7 @@ export default function JudgeLogin() {
           </div>
 
           <div className='flex flex-col w-[20rem] space-y-3 bg-slate-200 rounded-3xl items-center justify-center md:space-y-3 sm:space-y-2 p-2 shadow-md'>
-            <input type="email" placeholder='Judge Id' className='bg-slate-100 rounded-lg w-[80%] p-2 mt-4' value={user_id} onChange={(e) => setUserID(e.target.value)} required />
+            <input type="email" placeholder='Judge Id' className='bg-slate-100 rounded-lg w-[80%] p-2 mt-4' value={judge_id} onChange={(e) => setJudgeID(e.target.value)} required />
             <input type="password" placeholder='Password' className='bg-slate-100 rounded-lg w-[80%] p-2' value={password} onChange={(e) => setPassword(e.target.value)} required />
             <button className='bg-green-500 py-2 px-3 rounded-lg hover:bg-green-600 ease-in-out transition' onClick={() => {
               handleLogin()

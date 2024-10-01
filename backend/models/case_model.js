@@ -12,6 +12,7 @@ const caseSchema = new mongoose.Schema({
     case_judge:String,
     case_lawyer:String,
     case_next_hearing_date:String,
+    case_user_id:String
 });
 
 const myDB=mongoose.connection.useDb('cases_db')
